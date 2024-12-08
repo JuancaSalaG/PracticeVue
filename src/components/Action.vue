@@ -45,8 +45,17 @@ const description = ref("");
 const amount = ref(0);
 const movementType = ref("Ingreso");
 
+const emit = defineEmits(["create"]);
+
 const submit = () => {
   showModal.value = false;
+  emit("create", {
+    title: title.value,
+    description: description.value,
+    amount: movementType.value === "Gasto" ? -amount.value : amount.value,
+    type: movementType.value,
+    time: new Date()
+  })
 };
 </script>
 

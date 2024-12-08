@@ -81,6 +81,7 @@ const tap = ({ target, touches }) => {
     const elementX = target.getBoundingClientRect().x;
     const x = touches[0].clientX;
     pointer.value = ((x - elementX) * 300 / elementWidth);
+    emit("select", pointer.value);
 };
 
 const uptap = () => {

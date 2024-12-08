@@ -12,13 +12,14 @@
                     <Graphic :amounts="amounts" />
                 </template>
                 <template #action>
-                    <Action />
+                    <Action @create="create"/>
                 </template>
             </Resume>
         </template>
         <template #movements>
             <Movements
                 :movements="movements"
+                @remove="remove"
             />
         </template>
     </Layout>
@@ -120,6 +121,18 @@ export default {
                 const lastMovements = lastDays.slice(0, i);
                 return lastMovements.reduce((acc, m) => acc + m, 0);
             });
+        }
+    },
+    methods: {
+        create(movement) {
+            this.movements.push({
+                id: this.movements.length,
+                ...movement
+            });
+        },
+        remove(id) {
+            const index = this.movements.findIndex(movement => movement.id === id);
+            this.movements.splice(index, 1);
         }
     }
 }
