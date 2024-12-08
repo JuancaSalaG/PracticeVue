@@ -1,6 +1,9 @@
 <template>
     <div>
         <svg
+            @touchstart="tap"
+            @touchmove="tap"
+            @touchend="uptap"
             viewBox="0 0 300 200"
         >
             <line
@@ -19,10 +22,11 @@
             />
             <line 
                 stroke="#04B500"
+                v-show="showPointer"
                 stroke-width="2"
-                x1="200"
+                :x1="pointer"
                 y1="0"
-                x2="200"
+                :x2="pointer"
                 y2="200"
             />
         </svg>
@@ -31,7 +35,7 @@
 </template>
 
 <script setup>
-import { defineProps, toRefs, computed } from "vue";
+import { defineProps, toRefs, computed, ref } from "vue";
 
 const props = defineProps({
     amounts: {
@@ -65,6 +69,21 @@ const points = computed(() => {
         return `${points} ${x},${y}`;
     }, "0,100");
 });
+
+const showPointer = ref(false);
+const pointer = ref(0);
+
+const tap = ({ target, touches }) => {
+    showPointer.value = true;
+    const elementWidth = target.getBoundingClientRect().width;
+    const elementX = target.getBoundingClientRect().x;
+    const x = touches[0].clientX;
+    pointer.value = ((x - elementX) * 300 / elementWidth);
+};
+
+const uptap = () => {
+    showPointer.value = false;
+};
 </script>
 
 <style scoped>
