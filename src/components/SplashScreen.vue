@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 .splashscreen {
   display: flex;
   justify-content: center;
