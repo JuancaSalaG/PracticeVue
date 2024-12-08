@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { defineProps, toRefs, computed, ref } from "vue";
+import { defineProps, toRefs, computed, ref, defineEmits } from "vue";
 
 const props = defineProps({
     amounts: {
@@ -72,6 +72,8 @@ const points = computed(() => {
 
 const showPointer = ref(false);
 const pointer = ref(0);
+
+const emit = defineEmits(["select"]);
 
 const tap = ({ target, touches }) => {
     showPointer.value = true;
