@@ -45,7 +45,7 @@ export default {
         return {
             amount: null,
             label: null,
-            amounts: [100, -320, 1000, 640, -750, -900, 500, -490],
+            amounts: [100, -320, 1000, 640, -750, -900, 500, -490, 1000],
             movements: [
                 {
                     id: 0,
