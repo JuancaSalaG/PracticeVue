@@ -55,7 +55,11 @@ const submit = () => {
     amount: movementType.value === "Gasto" ? -amount.value : amount.value,
     type: movementType.value,
     time: new Date()
-  })
+  });
+  title.value = "";
+  description.value = "";
+  amount.value = 0;
+  movementType.value = "Ingreso";
 };
 </script>
 
