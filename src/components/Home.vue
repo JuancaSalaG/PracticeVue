@@ -7,8 +7,14 @@
             <Resume 
                 :label="label"
                 :total-amount="100000"
-                :amount="amount"
-            />
+                :amount="amount">
+                <template #graphic>
+                    graphic
+                </template>
+                <template #action>
+                    action
+                </template>
+            </Resume>
         </template>
         <template #movements>
             <Movements />

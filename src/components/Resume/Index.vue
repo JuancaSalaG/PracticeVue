@@ -1,7 +1,13 @@
 <template>
     <main>
         <p>{{ labelVisual }}</p>
-        <h1>{{ amountVisual }}</h1>
+        <h1>{{ amountCurrency }}</h1>
+        <div class="graphic">
+            <slot name="graphic"></slot>
+        </div>
+        <div class="action">
+            <slot name="action"></slot>
+        </div>
     </main>
 </template>
 
@@ -25,7 +31,13 @@ export default {
             return this.label !== null? this.label : 'Ahorro total';
         },
         amountVisual() {
-            return this.amount !== null? `$${this.amount}` : `$${this.totalAmount}`;
+            return this.amount !== null? this.amount : this.totalAmount;
+        },
+        amountCurrency() {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR'
+            }).format(this.amountVisual);
         }
     }
 }
